@@ -188,7 +188,7 @@ app_map = $(basename $(MAKE_TARGET)).map
 # Wrap the link objects in start/end group so that ld re-checks each
 # file for dependencies.  Otherwise linking static libs can be a pain
 # since order matters.
-$(MAKE_TARGET): $(LIBRARIES) $(OBJECTS_ALL) $(LD_FILE_NAME)
+$(MAKE_TARGET): $(LIBRARIES) $(OBJECTS_ALL) $(LD_FILE_NAME) $(LINK_LIB_NAME)
 	@$(call printmessage,link,Linking, $(APP_NAME))
 	$(at)$(LD) $(LDFLAGS) \
           -T$(LD_FILE_NAME) \
@@ -210,18 +210,20 @@ $(MAKE_TARGET): $(LIBRARIES) $(OBJECTS_ALL) $(LD_FILE_NAME)
 
 endif
 
+$(LINK_LIB_NAME):
+	cd $(SDK_ROOT)/lib/ksdk_platform_lib/gcc/$(CHIP) && env build=$(build) $(MAKE)
+
 #-------------------------------------------------------------------------------
 # Clean
 #-------------------------------------------------------------------------------
-.PHONY: clean cleanall
+.PHONY: clean cleanall clean_$(LINK_LIB_NAME)
 .PHONY: $(LINK_LIB_NAME)
-cleanall: clean $(LINK_LIB_NAME)
+cleanall: clean clean_$(LINK_LIB_NAME)
 clean: 
 	-rm -rf $(OBJECTS_ALL) $(OBJECTS_DIRS) $(MAKE_TARGET) $(app_bin) $(app_map)
 	$(POSTCLEAN)
-$(LINK_LIB_NAME):
-	$(MAKE) -C $(SDK_ROOT)/lib/gcc/$(CHIP)/$@ clean;	\
-	rm -rf $(SDK_ROOT)/lib/gcc/$(CHIP)/output/$(DEBUG_OR_RELEASE)/*
+clean_$(LINK_LIB_NAME):
+	env build=$(build) $(MAKE) -C $(abspath $(dir $(LINK_LIB_NAME))/.. ) clean;
 
 # Include dependency files.
 -include $(OBJECTS_ALL:.o=.d)

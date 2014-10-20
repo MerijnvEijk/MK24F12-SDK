@@ -58,7 +58,7 @@ const static IRQn_Type kpitIrqIds[FSL_FEATURE_PIT_TIMER_COUNT] =
 };
 #elif defined (K64F12_SERIES) || defined (K70F12_SERIES) || defined(K22F12810_SERIES) || \
       defined(K22F25612_SERIES) || defined(K22F51212_SERIES) || defined(KV31F12810_SERIES) || \
-      defined(KV31F25612_SERIES) || defined(KV31F51212_SERIES) 
+      defined(KV31F25612_SERIES) || defined(KV31F51212_SERIES) || defined (K24F12_SERIES)
 const static IRQn_Type kpitIrqIds[FSL_FEATURE_PIT_TIMER_COUNT] =
 {
     PIT0_IRQn, PIT1_IRQn, PIT2_IRQn, PIT3_IRQn
