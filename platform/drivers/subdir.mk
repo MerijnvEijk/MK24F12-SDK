@@ -23,6 +23,11 @@ SUB_DIR := adc dac edma dspi flextimer gpio i2c lptmr lpuart pdb \
            pit rtc sai uart wdog
 endif
 
+ifeq "$(CHIP)" "K24F12"
+SUB_DIR := adc can dac dspi edma flextimer gpio i2c lptmr pdb \
+           pit rtc sai sdcard sdhc uart wdog mpu
+endif
+
 ifeq "$(CHIP)" "K64F12"
 SUB_DIR := adc can dac dspi edma enet flextimer gpio i2c lptmr pdb \
            pit rtc sai sdcard sdhc uart wdog mpu
