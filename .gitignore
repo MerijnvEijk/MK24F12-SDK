@@ -17,3 +17,5 @@ lib/ksdk_ucosii_lib/
 lib/ksdk_ucosiii_lib/
 tools/
 usb/
+Debug/
+Release/
