@@ -86,7 +86,7 @@
  * See http://www.freertos.org/a00110.html.
  *----------------------------------------------------------*/
 #define configGENERATE_STATIC_SOURCES             1 /* 1: it will create 'static' sources to be used without Processor Expert; 0: Processor Expert code generated */
-#define configPEX_KINETIS_SDK                     0 /* 1: project is a Kinetis SDK Processor Expert project; 0: No Kinetis Processor Expert project */
+#define configPEX_KINETIS_SDK                     1 /* 1: project is a Kinetis SDK Processor Expert project; 0: No Kinetis Processor Expert project */
 
 #define configGENERATE_RUN_TIME_STATS             0 /* 1: generate runtime statistics; 0: no runtime statistics */
 #define configUSE_PREEMPTION                      1 /* 1: pre-emptive mode; 0: cooperative mode */
