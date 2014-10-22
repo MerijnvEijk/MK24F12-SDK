@@ -211,7 +211,7 @@ $(MAKE_TARGET): $(LIBRARIES) $(OBJECTS_ALL) $(LD_FILE_NAME) $(LINK_LIB_NAME)
 endif
 
 $(LINK_LIB_NAME):
-	cd $(SDK_ROOT)/lib/ksdk_platform_lib/gcc/$(CHIP) && env build=$(build) $(MAKE)
+	cd $(abspath $(dir $(LINK_LIB_NAME))/.. ) && env build=$(build) $(MAKE)
 
 #-------------------------------------------------------------------------------
 # Clean
